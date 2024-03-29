@@ -30,8 +30,6 @@ APEC = ['Australia', 'Brunei Darussalam', 'Canada', 'Chile', 'China', 'Hong Kong
 BRICS = ["Brazil", "Russian Federation", "India", "China", "South Africa"]
 
 
-# Ruta al archivo PDF The Global Competitiveness Report 2019
-pdf_path = r'C:\Users\DELL\Desktop\Servicio Social\REPORTE.pdf'
 dataframes_dict = {}
 #Aquí se agrega la ruta donde se guardó el archivo Tablas_final
 dataframes_dict = pd.read_pickle("Tablas_final.pkl")
@@ -79,36 +77,7 @@ Esta fórmula utiliza el promedio de los valores de ambas columnas como denomina
     
     return tabla_comparativa
 
-tabla_comparativa1=comparar('Azerbaijan', APEC,'APEC')
-tabla_comparativa2=comparar('Mexico', BRICS,'BRICS')
-tabla_comparativa3=comparar('United States', ["Brazil", "Russian Federation", "India", "China", "South Africa"],'BRICS')
-tabla_comparativa4=comparar('United States', ["Russian Federation"],'Russia')
 
-
-
-
-'''
-Crear DF de todos los datos
-paises_score = {}
-for key, df in dataframes_dict.items():
-    paises_score[key] = df['Score']
-
-# Crear un nuevo diccionario paises_score solo con la columna 'Value'
-paises_value = {}
-for key, df in dataframes_dict.items():
-    paises_value[key] = df['Value']
-    
-
-df_grupo_score = pd.DataFrame({f'{key} Score': paises_score[key] for key in dataframes_dict})
-df_grupo_value = pd.DataFrame({f'{key} Value': paises_value[key] for key in dataframes_dict})
-
-tabla_comparativa = pd.concat([dataframes_dict['Mexico'].iloc[:, 0], df_grupo_score, df_grupo_value], axis=1)
-                                  
-del df_grupo_score
-del df_grupo_value
-
-tabla_comparativa.to_excel('GCI_scores_values.xlsx', index=True)
-'''
 
 
 
