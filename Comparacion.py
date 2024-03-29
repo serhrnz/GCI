@@ -32,7 +32,7 @@ BRICS = ["Brazil", "Russian Federation", "India", "China", "South Africa"]
 
 dataframes_dict = {}
 #Aquí se agrega la ruta donde se guardó el archivo Tablas_final
-dataframes_dict = pd.read_pickle("Tablas_final.pkl")
+dataframes_dict = pd.read_pickle("https://github.com/serhrnz/GCI/raw/main/Tablas_final.pkl")
 
 '''
 A apartir de aquí se hace la comparación entre México y el resto del APEC
