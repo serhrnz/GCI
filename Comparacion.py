@@ -121,7 +121,9 @@ salida = widgets.Output()
 pais = dropdown_pais.value
 grupo = []
 nombre_grupo = 'Grupo'
-
+def ejecutar_comparacion(b):
+    # Aquí utilizas los valores actuales para llamar a comparar
+    resultado = comparar(pais, grupo, nombre_grupo)
 # Función para mostrar los widgets adicionales
 def mostrar_elementos(b):
 
@@ -158,7 +160,7 @@ def agregar_al_grupo(b):
 # Asociar funciones con los botones
 boton_elegir.on_click(mostrar_elementos)
 boton_agregar_grupo.on_click(agregar_al_grupo)
-boton_comparar.on_click(comparar(pais,grupo,nombre_grupo))
+boton_comparar.on_click(ejecutar_comparacion)
 
 # Mostrar la interfaz inicial
 print("Seleccione el país elegido para su comparación:")
@@ -167,17 +169,3 @@ print("Ingrese el número de países que tendrá el grupo a comparar:")
 display(entrada_cantidad)
 print("Presione 'Elegir' para seleccionar los países del grupo:")
 display(boton_elegir, contenedor_elementos, salida)
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
