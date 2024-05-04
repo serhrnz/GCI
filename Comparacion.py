@@ -40,25 +40,25 @@ dataframes_dict = pd.read_pickle("https://github.com/serhrnz/GCI/raw/main/Tablas
 A apartir de aquí se hace la comparación entre México y el resto del APEC
 '''
     
-def comparar(country,group,group_name):
-    # Crear un nuevo diccionario paises_score solo con la columna 'Score'
-    paises_score = {}
+def comparar(country,group,nombre_group):
+    # Crear un nuevo diccionario countries_score solo con la columna 'Score'
+    countries_score = {}
     for key, df in dataframes_dict.items():
-        paises_score[key] = df['Score']
+        countries_score[key] = df['Score']
     
-    # Crear un nuevo diccionario paises_score solo con la columna 'Value'
-    paises_value = {}
+    # Crear un nuevo diccionario countries_score solo con la columna 'Value'
+    countries_value = {}
     for key, df in dataframes_dict.items():
-        paises_value[key] = df['Value']
+        countries_value[key] = df['Value']
         
         
-    grupo = [key for key in grupo if key != pais]
+    group = [key for key in group if key != country]
     
-    df_grupo_score = pd.DataFrame({key: paises_score[key] for key in grupo})
-    df_grupo_score['Promedio'] = df_grupo_score.mean(axis=1)
+    df_group_score = pd.DataFrame({key: countries_score[key] for key in group})
+    df_group_score['Promedio'] = df_group_score.mean(axis=1)
     
-    df_grupo_value = pd.DataFrame({key: paises_value[key] for key in grupo})
-    df_grupo_value['Promedio'] = df_grupo_value.mean(axis=1)
+    df_group_value = pd.DataFrame({key: countries_value[key] for key in group})
+    df_group_value['Promedio'] = df_group_value.mean(axis=1)
     
     '''
 Para comparar las diferencias de manera relativa y evitar el sesgo, se utiliza la siguiente fórmula para calcular la diferencia porcentual:
@@ -68,14 +68,14 @@ Diferencia Porcentual=|(|Columna1−Columna2|)/Promedio(Columna1,Columna2)|×100
 Esta fórmula utiliza el promedio de los valores de ambas columnas como denominador, lo que ayuda a mitigar el sesgo.
     '''
     # Crear un DataFrame combinando los scores de México y el Grupo
-    tabla_comparativa = pd.DataFrame({'Index component':dataframes_dict[pais].iloc[:, 0],
-                                f'{pais} Value': paises_value[pais],
-                                f'{nombre_grupo} Value': df_grupo_value['Promedio'],
-                                'Difference Value %': abs((abs(paises_value[pais] - df_grupo_value['Promedio']) / ((paises_value[pais]+df_grupo_value['Promedio'])/2) * 100)),
-                                f'{pais} Score': paises_score[pais],                          
-                                f'{nombre_grupo} Score': df_grupo_score['Promedio'],
-                                'Difference Score %': abs((abs(paises_score[pais] - df_grupo_score['Promedio']) / ((paises_score[pais]+df_grupo_score['Promedio'])/2) * 100))})
-    tabla_comparativa.to_excel(f'tabla_comparativa{pais }vs{nombre_grupo}.xlsx', index=False)
+    tabla_comparativa = pd.DataFrame({'Index component':dataframes_dict[country].iloc[:, 0],
+                                f'{country} Value': countries_value[country],
+                                f'{nombre_group} Value': df_group_value['Promedio'],
+                                'Difference Value %': abs((abs(countries_value[country] - df_group_value['Promedio']) / ((countries_value[country]+df_group_value['Promedio'])/2) * 100)),
+                                f'{country} Score': countries_score[country],                          
+                                f'{nombre_group} Score': df_group_score['Promedio'],
+                                'Difference Score %': abs((abs(countries_score[country] - df_group_score['Promedio']) / ((countries_score[country]+df_group_score['Promedio'])/2) * 100))})
+    tabla_comparativa.to_excel(f'tabla_comparativa{country }vs{nombre_group}.xlsx', index=False)
     
     return tabla_comparativa
 
