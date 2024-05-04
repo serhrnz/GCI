@@ -71,10 +71,10 @@ Esta fórmula utiliza el promedio de los valores de ambas columnas como denomina
     tabla_comparativa = pd.DataFrame({'Index component':dataframes_dict[country].iloc[:, 0],
                                 f'{country} Value': countries_value[country],
                                 f'{nombre_group} Value': df_group_value['Promedio'],
-                                'Difference Value %': abs((abs(countries_value[country] - df_group_value['Promedio']) / ((countries_value[country]+df_group_value['Promedio'])/2) * 100)),
+                                'Difference Value %': round(abs((abs(countries_value[country] - df_group_value['Promedio']) / ((countries_value[country]+df_group_value['Promedio'])/2) * 100)),2),
                                 f'{country} Score': countries_score[country],                          
                                 f'{nombre_group} Score': df_group_score['Promedio'],
-                                'Difference Score %': abs((abs(countries_score[country] - df_group_score['Promedio']) / ((countries_score[country]+df_group_score['Promedio'])/2) * 100))})
+                                'Difference Score %': round(abs((abs(countries_score[country] - df_group_score['Promedio']) / ((countries_score[country]+df_group_score['Promedio'])/2) * 100)),2)})
     tabla_comparativa.to_excel(f'tabla_comparativa{country }vs{nombre_group}.xlsx', index=False)
     
     return tabla_comparativa
