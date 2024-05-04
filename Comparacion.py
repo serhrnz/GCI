@@ -126,8 +126,8 @@ def ejecutar_comparacion(b):
     resultado = comparar(pais, grupo, nombre_grupo)
 # Función para mostrar los widgets adicionales
 def mostrar_elementos(b):
-
     cantidad = entrada_cantidad.value
+    pais = dropdown_pais.value   
     nuevos_widgets = []
     for i in range(cantidad):
         nuevos_widgets.append(
