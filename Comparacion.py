@@ -75,7 +75,7 @@ Esta fórmula utiliza el promedio de los valores de ambas columnas como denomina
                                 f'{country} Score': countries_score[country],                          
                                 f'{nombre_group} Score': df_group_score['Promedio'],
                                 'Difference Score %': round(abs((abs(countries_score[country] - df_group_score['Promedio']) / ((countries_score[country]+df_group_score['Promedio'])/2) * 100)),2)})
-    tabla_comparativa.to_excel(f'tabla_comparativa{country }vs{nombre_group}.xlsx', index=False)
+    tabla_comparativa.to_excel(f'{country }vs{nombre_group}.xlsx', index=False)
     
     return tabla_comparativa
 
