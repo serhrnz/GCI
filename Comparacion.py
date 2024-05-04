@@ -1,6 +1,6 @@
 import pandas as pd
 import ipywidgets as widgets
-from IPython.display import display, clear_output, Markdown
+from IPython.display import display
 
 # Se crea la lista de nombres de los países incluidos en el reporte para buscar su tabla correspondiente
 opciones_pais = [
@@ -118,7 +118,7 @@ contenedor_elementos = widgets.VBox([])
 salida = widgets.Output()
 
 # Variable para almacenar el grupo de elementos seleccionados
-pais = ''
+pais = 'Mexico'
 grupo = []
 nombre_grupo = 'Grupo'
 
@@ -131,9 +131,9 @@ def ejecutar_comparacion(b):
 
 # Función para mostrar los widgets adicionales
 def mostrar_elementos(b):
+    global pais  # Esto es importante para que cambie la variable global
     cantidad = entrada_cantidad.value
-    global pais 
-    pais = dropdown_pais.value   
+    pais = dropdown_pais.value 
     nuevos_widgets = []
     for i in range(cantidad):
         nuevos_widgets.append(
