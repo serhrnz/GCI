@@ -125,7 +125,7 @@ nombre_grupo = 'Grupo'
 def ejecutar_comparacion(b):
     # Aquí utilizas los valores actuales para llamar a comparar
     comparar(pais, grupo, nombre_grupo)
-    print(f"Se ha generado el archivo Excel con la tabla comparativa entre {pais} y {nombre_grupo}.\nPara descargarlo, revise la sección 'Archivos' a la izquierda de la pantalla y refresque la ventana.\nLuego, de clic en los tres puntos y luego en 'Descargar'.")
+    print(f"Se ha generado el archivo Excel con la tabla comparativa entre {pais} y {nombre_grupo}.\nPara descargarlo, revise la sección 'Archivos' a la izquierda de la pantalla y refresque la ventana.\nDespués, de clic en los tres puntos y luego en 'Descargar'.")
 
 # Función para mostrar los widgets adicionales
 def mostrar_elementos(b):
