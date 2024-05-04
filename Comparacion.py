@@ -158,7 +158,7 @@ def agregar_al_grupo(b):
 # Asociar funciones con los botones
 boton_elegir.on_click(mostrar_elementos)
 boton_agregar_grupo.on_click(agregar_al_grupo)
-boton_comparar.on_click(comparar)
+boton_comparar.on_click(comparar(pais,grupo,nombre_grupo))
 
 # Mostrar la interfaz inicial
 print("Seleccione el país elegido para su comparación:")
