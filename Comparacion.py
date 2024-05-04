@@ -76,7 +76,7 @@ Esta fórmula utiliza el promedio de los valores de ambas columnas como denomina
                                 f'{nombre_grupo} Score': df_grupo_score['Promedio'],
                                 'Difference Score %': abs((abs(paises_score[pais] - df_grupo_score['Promedio']) / ((paises_score[pais]+df_grupo_score['Promedio'])/2) * 100))})
     tabla_comparativa.to_excel(f'tabla_comparativa{pais }vs{nombre_grupo}.xlsx', index=False)
-    print(f"Se ha generado la tabla comparativa entre {pais} y {nombre_grupo}. Para encontrarla, revise la sección 'Archivos' a la izquierda de la pantalla y refresque la ventana.")
+    
     return tabla_comparativa
 
 
@@ -124,6 +124,7 @@ nombre_grupo = 'Grupo'
 def ejecutar_comparacion(b):
     # Aquí utilizas los valores actuales para llamar a comparar
     resultado = comparar(pais, grupo, nombre_grupo)
+    print(f"Se ha generado la tabla comparativa entre {pais} y {nombre_grupo}. Para encontrarla, revise la sección 'Archivos' a la izquierda de la pantalla y refresque la ventana.")
 # Función para mostrar los widgets adicionales
 def mostrar_elementos(b):
     cantidad = entrada_cantidad.value
@@ -169,3 +170,5 @@ print("Ingrese el número de países que tendrá el grupo a comparar:")
 display(entrada_cantidad)
 print("Presione 'Elegir' para seleccionar los países del grupo:")
 display(boton_elegir, contenedor_elementos, salida)
+
+
