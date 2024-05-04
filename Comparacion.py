@@ -166,7 +166,7 @@ boton_agregar_grupo.on_click(agregar_al_grupo)
 boton_comparar.on_click(ejecutar_comparacion)
 
 # Mostrar la interfaz inicial
-print("Seleccione el país elegido para su comparación:")
+print("\nSeleccione el país elegido para su comparación:")
 display(dropdown_pais)
 print("Ingrese el número de países que tendrá el grupo a comparar:")
 display(entrada_cantidad)
