@@ -118,7 +118,7 @@ contenedor_elementos = widgets.VBox([])
 salida = widgets.Output()
 
 # Variable para almacenar el grupo de elementos seleccionados
-pais = dropdown_pais.value
+pais = ''
 grupo = []
 nombre_grupo = 'Grupo'
 
