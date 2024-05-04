@@ -40,7 +40,7 @@ dataframes_dict = pd.read_pickle("https://github.com/serhrnz/GCI/raw/main/Tablas
 A apartir de aquí se hace la comparación entre México y el resto del APEC
 '''
     
-def comparar(pais,grupo,nombre_grupo):
+def comparar(country,group,group_name):
     # Crear un nuevo diccionario paises_score solo con la columna 'Score'
     paises_score = {}
     for key, df in dataframes_dict.items():
