@@ -55,10 +55,10 @@ def comparar(country,group,nombre_group):
     group = [key for key in group if key != country]
     
     df_group_score = pd.DataFrame({key: countries_score[key] for key in group})
-    df_group_score['Promedio'] = df_group_score.mean(axis=1)
+    df_group_score['Promedio'] = round(df_group_score.mean(axis=1),2)
     
     df_group_value = pd.DataFrame({key: countries_value[key] for key in group})
-    df_group_value['Promedio'] = df_group_value.mean(axis=1)
+    df_group_value['Promedio'] = round(df_group_value.mean(axis=1),2)
     
     '''
 Para comparar las diferencias de manera relativa y evitar el sesgo, se utiliza la siguiente fórmula para calcular la diferencia porcentual:
