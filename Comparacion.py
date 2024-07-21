@@ -1,6 +1,8 @@
 import pandas as pd
 import ipywidgets as widgets
 from IPython.display import display
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Se crea la lista de nombres de los países incluidos en el reporte para buscar su tabla correspondiente
 opciones_pais = [
@@ -39,7 +41,46 @@ dataframes_dict = pd.read_pickle("https://github.com/serhrnz/GCI/raw/main/Tablas
 '''
 A apartir de aquí se hace la comparación entre México y el resto del APEC
 '''
+def plot_radar_chart(tabla_comparativa):
+    keyword = "pillar"
+    # Filtrar las filas por los índices que contienen 'keyword'
+    filtered_labels = tabla_comparativa['Index component'].str.contains(keyword)
+    filtered_data = tabla_comparativa[filtered_labels]
+    num_vars = len(filtered_data)
+        
+    # Preparar las etiquetas y ángulos
+    original_labels = filtered_data['Index component'].tolist()
+    original_labels = [label.split(': ',)[1] for label in original_labels]
+    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
+    angles += angles[:1]  # Completar el ciclo para el gráfico radar
+
+    # Completar las series para que el gráfico radar sea un ciclo cerrado
+    pais_scores = filtered_data[f'{pais} Score'].tolist()
+    pais_scores += pais_scores[:1]
+    grupo_scores = filtered_data[f'{nombre_grupo} Score'].tolist()
+    grupo_scores += grupo_scores[:1]
+
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
     
+    # Rellenar el área del gráfico radar
+    ax.fill(angles, pais_scores, alpha=0.1, color='blue', label=pais)
+    ax.fill(angles, grupo_scores, alpha=0.1, color='red', label=nombre_grupo)
+    
+    # Trazar las líneas de los datos
+    ax.plot(angles, pais_scores, color='blue', linewidth=2, linestyle='solid')
+    ax.plot(angles, grupo_scores, color='red', linewidth=2, linestyle='solid')
+    
+    # Ajustar el rango del eje radial
+    ax.set_ylim(0, 100)  # Ajustar el rango del eje radial según tus datos específicos
+    
+    # Configurar las etiquetas de los ángulos
+    ax.set_thetagrids(np.degrees(angles[:-1]), original_labels)  # Excluir el último ángulo repetido
+    
+    # Añadir título y leyenda
+    ax.set_title(f'Comparación de los 12 pilares del GCI 4.0 2019 entre {pais} y {nombre_grupo}', y=1.08)
+    ax.legend(loc='upper right', bbox_to_anchor=(1.3, 1))
+    plt.show()
+
 def comparar(country,group,nombre_group):
     # Crear un nuevo diccionario countries_score solo con la columna 'Score'
     countries_score = {}
@@ -76,7 +117,7 @@ Esta fórmula utiliza el promedio de los valores de ambas columnas como denomina
                                 f'{nombre_group} Score': df_group_score['Promedio'],
                                 'Difference Score %': round(abs((abs(countries_score[country] - df_group_score['Promedio']) / ((countries_score[country]+df_group_score['Promedio'])/2) * 100)),2)})
     tabla_comparativa.to_excel(f'{country }vs{nombre_group}.xlsx', index=False)
-    
+    plot_radar_chart(tabla_comparativa)    
     return tabla_comparativa
 
 
