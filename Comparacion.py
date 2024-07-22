@@ -117,6 +117,7 @@ Esta fórmula utiliza el promedio de los valores de ambas columnas como denomina
                                 f'{nombre_group} Score': df_group_score['Promedio'],
                                 'Difference Score %': round(abs((abs(countries_score[country] - df_group_score['Promedio']) / ((countries_score[country]+df_group_score['Promedio'])/2) * 100)),2)})
     tabla_comparativa.to_excel(f'{country }vs{nombre_group}.xlsx', index=False)
+    print(f"Se ha generado el archivo Excel con la tabla comparativa entre {pais} y {nombre_grupo}.\nPara descargarlo, revise la sección 'Archivos' a la izquierda de la pantalla haciendo clic en el icono en forma de folder.\nDespués, de clic en los tres puntos y luego en 'Descargar'.")     
     plot_radar_chart(tabla_comparativa)    
     return tabla_comparativa
 
@@ -166,8 +167,7 @@ nombre_grupo = 'Grupo'
 def ejecutar_comparacion(b):
     # Aquí utilizas los valores actuales para llamar a comparar
     comparar(pais, grupo, nombre_grupo)
-    print(f"Se ha generado el archivo Excel con la tabla comparativa entre {pais} y {nombre_grupo}.\nPara descargarlo, revise la sección 'Archivos' a la izquierda de la pantalla haciendo clic en el icono en forma de folder.\nDespués, de clic en los tres puntos y luego en 'Descargar'.")
-
+    
 # Función para mostrar los widgets adicionales
 def mostrar_elementos(b):
     global pais  # Esto es importante para que cambie la variable global
